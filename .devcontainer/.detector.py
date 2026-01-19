@@ -1,24 +1,41 @@
-# .detector.py
+# .devcontainer/.detector.py
 import time
 import os
 import subprocess
 
-# The file to watch
-FILE_TO_WATCH = "main.py"
-LAST_MODIFIED = 0
+# 1. Calculate the absolute path to the workspace root
+# This grabs the folder where THIS script lives (.devcontainer)
+script_location = os.path.dirname(os.path.abspath(__file__))
+# This goes up one level to the root folder (CS101-Assignment...)
+workspace_root = os.path.dirname(script_location)
 
-# We silence the print statement so it doesn't show up in the terminal
-# print(f"👀 Monitoring {FILE_TO_WATCH}...") 
+# 2. Target the file reliably
+file_path = os.path.join(workspace_root, "main.py")
+last_modified = 0
+
+# 3. Ensure we run Git commands from the root directory
+os.chdir(workspace_root)
 
 while True:
     try:
-        current_mtime = os.path.getmtime(FILE_TO_WATCH)
-        if current_mtime != LAST_MODIFIED:
-            LAST_MODIFIED = current_mtime
-            # Force a git commit silently
-            subprocess.run(["git", "add", FILE_TO_WATCH], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-            subprocess.run(["git", "commit", "-m", f"Auto-save: {time.ctime()}"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-            subprocess.run(["git", "push"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        # Check if file exists to avoid crashing on start
+        if os.path.exists(file_path):
+            current_mtime = os.path.getmtime(file_path)
+            
+            # Initial setup: don't commit immediately on boot
+            if last_modified == 0:
+                last_modified = current_mtime
+            
+            elif current_mtime != last_modified:
+                last_modified = current_mtime
+                
+                # Force Git commands
+                subprocess.run(["git", "add", "main.py"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                subprocess.run(["git", "commit", "-m", f"Snapshot: {time.ctime()}"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                # Note: 'git push' might fail if auth isn't cached yet, but commit will succeed
+                subprocess.run(["git", "push"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                
     except Exception:
         pass
-    time.sleep(10) # Checks every 10 seconds
+        
+    time.sleep(10)
