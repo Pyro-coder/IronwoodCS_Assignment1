@@ -6,8 +6,9 @@
       "extensions": [
         "ms-python.python",
         "ms-python.vscode-pylance",
-        // The minus sign (-) tells Codespaces: "If this is installed, REMOVE it."
-        "-GitHub.copilot-chat" 
+        "-GitHub.copilot-chat",
+        // NEW: This extension turns the repo into a "Google Doc" style history
+        "lostintangent.gitdoc"
       ],
       "settings": {
         // --- 1. Auto-Grader Configuration ---
@@ -18,19 +19,20 @@
         "python.testing.unittestEnabled": true,
 
         // --- 2. The "Nuclear" Option for Copilot ---
-        
-        // This command hides the chat interface, the 'sparkle' icon, and the agent window
         "chat.disableAIFeatures": true,
-        
-        // Just in case, this forces the secondary sidebar (Right panel) to hide on startup
         "workbench.secondarySideBar.defaultVisibility": "hidden",
-
-        // Standard disable settings for the main extension
         "github.copilot.enable": {
           "*": false,
           "python": false
         },
-        "github.copilot.editor.enableAutoCompletions": false
+        "github.copilot.editor.enableAutoCompletions": false,
+
+        // --- 3. NEW: GitDoc "Forensic" Configuration ---
+        // "onSave" forces a commit & push every time they save the file.
+        // This creates the "Timeline" you can see remotely.
+        "gitdoc.autoPush": "onSave",
+        "gitdoc.commitMessageFormat": "Snapshot: ${delta}",
+        "gitdoc.enabled": true
       }
     }
   }
