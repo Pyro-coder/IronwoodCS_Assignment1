@@ -5,22 +5,22 @@
 # --- PART 1: THE LOGIC (We test this) ---
 def add(a, b):
     # TODO: return the sum of a and b
-    pass
+    pass # REMOVE THIS LINE
 
 def subtract(a, b):
     # TODO: return a minus b
-    pass
+    pass # REMOVE THIS LINE
 
 def multiply(a, b):
     # TODO: return a multiplied by b
-    pass
+    pass # REMOVE THIS LINE
 
 def divide(a, b):
     # TODO: return a divided by b. Finish the condition for dividing by 0
-    # Insert the correct condition in the if statement
-    if ():
-        return None
-    pass
+    if (): # Insert the correct condition in the if statement's parenthesis
+        return None # DO NOT MODIFY THIS LINE
+
+    pass # REMOVE THIS LINE
 
 ####################################################################################################
 

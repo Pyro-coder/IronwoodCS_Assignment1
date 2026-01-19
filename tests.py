@@ -11,6 +11,7 @@ class TestCalculator(unittest.TestCase):
 
     def test_subtract(self):
         self.assertEqual(subtract(10, 5), 5, "Fail")
+        self.assertEqual(subtract(10, -5), 15, "Fail")
         print("✅ Subtraction Tests Passed")
 
     def test_multiply(self):
