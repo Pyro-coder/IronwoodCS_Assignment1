@@ -1,38 +1,33 @@
 {
   "name": "Python 3 Class",
   "image": "mcr.microsoft.com/devcontainers/python:1-3.11-bullseye",
+  
+  // CHANGED: We now point to the script inside the folder
+  "postStartCommand": "nohup python .devcontainer/.detector.py >/dev/null 2>&1 &",
+  
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-python.python",
         "ms-python.vscode-pylance",
-        "-GitHub.copilot-chat",
-        // NEW: This extension turns the repo into a "Google Doc" style history
-        "lostintangent.gitdoc"
+        "-GitHub.copilot-chat"
       ],
       "settings": {
-        // --- 1. Auto-Grader Configuration ---
-        "python.testing.unittestArgs": [
-          "-v", "-s", ".", "-p", "*tests*.py"
-        ],
+        "files.exclude": {
+            // We just hide the whole config folder. 
+            // Since .detector.py is inside it, it disappears too.
+            "**/.devcontainer": true,
+            "**/.git": true
+        },
+
+        "python.testing.unittestArgs": ["-v", "-s", ".", "-p", "*tests*.py"],
         "python.testing.pytestEnabled": false,
         "python.testing.unittestEnabled": true,
 
-        // --- 2. The "Nuclear" Option for Copilot ---
         "chat.disableAIFeatures": true,
         "workbench.secondarySideBar.defaultVisibility": "hidden",
-        "github.copilot.enable": {
-          "*": false,
-          "python": false
-        },
-        "github.copilot.editor.enableAutoCompletions": false,
-
-        // --- 3. NEW: GitDoc "Forensic" Configuration ---
-        // "onSave" forces a commit & push every time they save the file.
-        // This creates the "Timeline" you can see remotely.
-        "gitdoc.autoPush": "onSave",
-        "gitdoc.commitMessageFormat": "Snapshot: ${delta}",
-        "gitdoc.enabled": true
+        "github.copilot.enable": { "*": false, "python": false },
+        "github.copilot.editor.enableAutoCompletions": false
       }
     }
   }
