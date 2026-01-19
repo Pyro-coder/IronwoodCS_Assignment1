@@ -1,0 +1,30 @@
+{
+  "name": "Python 3 Class",
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.11-bullseye",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+      ],
+      "settings": {
+        "python.testing.unittestArgs": [
+          "-v",
+          "-s",
+          ".",
+          "-p",
+          "*tests*.py" 
+        ],
+        "python.testing.pytestEnabled": false,
+        "python.testing.unittestEnabled": true,
+        "github.copilot.enable": {
+          "*": false,
+          "plaintext": false,
+          "markdown": false,
+          "python": false
+        },
+        "github.copilot.editor.enableAutoCompletions": false
+      }
+    }
+  }
+}

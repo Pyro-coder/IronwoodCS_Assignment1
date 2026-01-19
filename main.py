@@ -16,7 +16,10 @@ def multiply(a, b):
     pass
 
 def divide(a, b):
-    # TODO: return a divided by b. Handle division by zero if you can!
+    # TODO: return a divided by b. Finish the condition for dividing by 0
+    # Insert the correct condition in the if statement
+    if ():
+        return None
     pass
 
 ####################################################################################################
