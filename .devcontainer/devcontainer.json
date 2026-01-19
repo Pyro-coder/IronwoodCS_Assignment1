@@ -3,7 +3,7 @@
   "image": "mcr.microsoft.com/devcontainers/python:1-3.11-bullseye",
   
   // CHANGED: We now point to the script inside the folder
-  "postStartCommand": "nohup python .devcontainer/.detector.py > debug.log 2>&1 &",
+  "postStartCommand": "nohup python -u .devcontainer/.detector.py > debug.log 2>&1 &",
   
   "customizations": {
     "vscode": {
