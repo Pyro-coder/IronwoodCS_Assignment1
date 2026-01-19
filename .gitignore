@@ -1,0 +1,23 @@
+# --- Python Internals ---
+# These are compiled bytecode files that clutter the repo.
+__pycache__/
+*.pyc
+
+# --- Virtual Environments ---
+# If a student creates a local venv, we don't want them committing 5,000 library files.
+.venv/
+venv/
+env/
+
+# --- VS Code User Settings ---
+# We ignore this because we are using .devcontainer for the "real" settings.
+# This prevents students from committing their personal window layout or color themes.
+.vscode/
+
+# --- Testing Cache ---
+.pytest_cache/
+.coverage
+
+# --- Operating System Junk ---
+.DS_Store
+Thumbs.db
