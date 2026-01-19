@@ -9,9 +9,9 @@ For this assignment, you need to help construct a calculator. Four functions wer
 Inside the parentheses for these functions are PARAMETERS. These parameters function like variables, and must be used to complete each function.
 Additionally, once you finish your calculation, we aren't yet done. It is necessary to return our output. The following specifies the anatomy of a complete function:
 
-  def plus_one(a):
-    result = a + 1
-    return result
+    def plus_one(a):
+        result = a + 1 # Calculate the result by adding 1
+        return result # Return the calculated result`
 
-Finally, for division, it is impossible to divide by 0, so we must ensure that this never happens. Modify the conditional so that the 'return none' code runs if b is 0.
+Finally, for division, it is impossible to divide by 0, so we must ensure that this never happens. Modify the conditional so that the `return none` code runs if b is 0.
 
