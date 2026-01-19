@@ -2,28 +2,28 @@
   "name": "Python 3 Class",
   "image": "mcr.microsoft.com/devcontainers/python:1-3.11-bullseye",
   
-  // CHANGED: We now point to the script inside the folder
-  "postStartCommand": "nohup python -u .devcontainer/.detector.py > debug.log 2>&1 &",
-  
   "customizations": {
     "vscode": {
       "extensions": [
-        "ms-python.python",
-        "ms-python.vscode-pylance",
-        "-GitHub.copilot-chat"
+        "ms-python.python",        // Includes the Debugger (debugpy)
+        "ms-python.vscode-pylance", // Intellisense
+        "-GitHub.copilot-chat"      // Uninstall Chat
       ],
       "settings": {
+        // --- 1. Visual Hiding ---
         "files.exclude": {
-            // We just hide the whole config folder. 
-            // Since .detector.py is inside it, it disappears too.
+            // Hides the config folder so students don't mess with settings
             "**/.devcontainer": true,
+            // Hides git internals
             "**/.git": true
         },
 
+        // --- 2. Auto-Grader Configuration ---
         "python.testing.unittestArgs": ["-v", "-s", ".", "-p", "*tests*.py"],
         "python.testing.pytestEnabled": false,
         "python.testing.unittestEnabled": true,
 
+        // --- 3. Anti-AI Settings ---
         "chat.disableAIFeatures": true,
         "workbench.secondarySideBar.defaultVisibility": "hidden",
         "github.copilot.enable": { "*": false, "python": false },
