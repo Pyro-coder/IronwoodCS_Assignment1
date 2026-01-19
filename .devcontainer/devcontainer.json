@@ -5,22 +5,29 @@
     "vscode": {
       "extensions": [
         "ms-python.python",
-        "ms-python.vscode-pylance"
+        "ms-python.vscode-pylance",
+        // The minus sign (-) tells Codespaces: "If this is installed, REMOVE it."
+        "-GitHub.copilot-chat" 
       ],
       "settings": {
+        // --- 1. Auto-Grader Configuration ---
         "python.testing.unittestArgs": [
-          "-v",
-          "-s",
-          ".",
-          "-p",
-          "*tests*.py" 
+          "-v", "-s", ".", "-p", "*tests*.py"
         ],
         "python.testing.pytestEnabled": false,
         "python.testing.unittestEnabled": true,
+
+        // --- 2. The "Nuclear" Option for Copilot ---
+        
+        // This command hides the chat interface, the 'sparkle' icon, and the agent window
+        "chat.disableAIFeatures": true,
+        
+        // Just in case, this forces the secondary sidebar (Right panel) to hide on startup
+        "workbench.secondarySideBar.defaultVisibility": "hidden",
+
+        // Standard disable settings for the main extension
         "github.copilot.enable": {
           "*": false,
-          "plaintext": false,
-          "markdown": false,
           "python": false
         },
         "github.copilot.editor.enableAutoCompletions": false
