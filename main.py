@@ -4,8 +4,7 @@
 
 # --- PART 1: THE LOGIC (We test this) ---
 def add(a, b):
-    # TODO: return the sum of a and b
-    pass # REMOVE THIS LINE
+    return a+b
 
 def subtract(a, b):
     # TODO: return a minus b
